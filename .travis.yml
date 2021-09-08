@@ -2,12 +2,6 @@ language: python
 python:
   - "3.8"
 
-on: 
-  push:
-    branches: 
-      - main 
-    paths:
-      - '*.txt'
 # command to run SOOS tests
 script:
   -  # ARGS:
