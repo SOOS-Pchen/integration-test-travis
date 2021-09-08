@@ -2,15 +2,6 @@ language: python
 python:
   - "3.8"
 
-jobs:
-  include:
-  - python: "2.7"
-    env: TEST_SUITE=suite_2_7
-  - python: "3.8"
-    env: TEST_SUITE=suite_3_8
-  - python: "pypy"
-    env: TEST_SUITE=suite_pypy
-
 on: 
   push:
     branches: 
