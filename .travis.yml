@@ -34,8 +34,8 @@ script:
   - SOOS_INTEGRATION_NAME="TravisCI"
 
   -  # **************************** Modify Above Only ***************#
-  - mkdir -p "${SOOS_CHECKOUT_DIR}/soos/workspace"
-  - cd "${SOOS_CHECKOUT_DIR}"
+  - # mkdir -p "${SOOS_CHECKOUT_DIR}/soos/workspace"
+  - # cd "${SOOS_CHECKOUT_DIR}"
   - python3 -m venv .
   - source bin/activate
   - pip3 install -r "${SOOS_CHECKOUT_DIR}/soos/requirements.txt"
