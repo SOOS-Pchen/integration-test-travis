@@ -3,3 +3,5 @@ pycaret
 scipy
 math
 stats
+pandas
+numpy
