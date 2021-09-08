@@ -1,14 +1,19 @@
 language: python
 python:
   - "3.8"
-
+on: 
+  push:
+    branches: 
+      - main 
+    paths:
+      - '*.txt'
 # command to run SOOS tests
 script:
   -  # ARGS:
   -  # run soos.py with the -h flag for help
 
   -  # ARGS REQUIRING CUSTOMIZATION:
-  - SOOS_PROJECT_NAME="PROJECT_NAME"
+  - SOOS_PROJECT_NAME="peijin_loves_travis"
 
   -  # ARGS WHERE CUSTOMIZATION IS OPTIONAL:
   - SOOS_MODE="run_and_wait"
