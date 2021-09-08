@@ -1,4 +1,7 @@
 sktime
+nltk
+xgboost
+imblearn
 pycaret
 scipy
 math
