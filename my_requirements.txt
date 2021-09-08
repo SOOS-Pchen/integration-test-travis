@@ -5,3 +5,4 @@ nltk
 glob
 math
 numpy
+sklearn
