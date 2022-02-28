@@ -19,7 +19,7 @@ script:
   - SOOS_ANALYSIS_RESULT_POLLING_INTERVAL=10
 
   -  # ARGS WHERE CUSTOMIZATION IS OPTIONAL, BUT UNLIKELY:
-  - SOOS_API_BASE_URL="https://dev-api.soos.io/api/"
+  - SOOS_API_BASE_URL="https://qa-api.soos.io/api/"
 
   -  # CI ENGINE SPECIFIC:
   - eval SOOS_CHECKOUT_DIR="$TRAVIS_BUILD_DIR"
