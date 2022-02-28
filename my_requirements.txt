@@ -1,8 +1,1 @@
-scipy
-flair
-pytorch
-nltk
-glob
-math
-numpy
 sklearn
