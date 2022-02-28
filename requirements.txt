@@ -1,7 +1,1 @@
-numpy
-scipy
-tensorflow
-xgboost
-catboost
 lightgbm
-flair 
