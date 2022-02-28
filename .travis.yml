@@ -35,10 +35,10 @@ script:
   -  # **************************** Modify Above Only ***************#
   - mkdir -p "${SOOS_CHECKOUT_DIR}/soos/workspace"
   - cd "${SOOS_CHECKOUT_DIR}"
-  - python3 -m venv .
+  - python -m venv .
   - source bin/activate
   - cd "${SOOS_CHECKOUT_DIR}/soos"
   - curl -s https://api.github.com/repos/soos-io/soos-ci-analysis-python/releases/latest | grep "browser_download_url" | cut -d '"' -f 4 | xargs -n 1 curl -LO
   - cd "${SOOS_CHECKOUT_DIR}"
-  - pip3 install -r "${SOOS_CHECKOUT_DIR}/soos/requirements.txt"
+  - pip install -r "${SOOS_CHECKOUT_DIR}/soos/requirements.txt"
   - python3 soos/soos.py -m="${SOOS_MODE}" -of="${SOOS_ON_FAILURE}" -dte="${SOOS_DIRS_TO_EXCLUDE}" -fte="${SOOS_FILES_TO_EXCLUDE}" -wd="${SOOS_CHECKOUT_DIR}" -armw=${SOOS_ANALYSIS_RESULT_MAX_WAIT} -arpi=${SOOS_ANALYSIS_RESULT_POLLING_INTERVAL} -buri="${SOOS_API_BASE_URL}" -scp="${SOOS_CHECKOUT_DIR}" -pn="${SOOS_PROJECT_NAME}" -ch="${SOOS_COMMIT_HASH}" -bn="${SOOS_BRANCH_NAME}" -bruri="${SOOS_BRANCH_URI}" -bldver="${SOOS_BUILD_VERSION}" -blduri="${SOOS_BUILD_URI}" -oe="${SOOS_OPERATING_ENVIRONMENT}" -intn="${SOOS_INTEGRATION_NAME}" $TEST_SUITE
