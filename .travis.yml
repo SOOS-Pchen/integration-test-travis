@@ -6,4 +6,4 @@ env:
     - API_URL: https://qa-api.soos.io/api/
     - TARGET_URL: https://brokencrystals.com
 script:
-  - docker run -it --rm soosio/dast --clientId=$SOOS_CLIENT_ID --apiKey=$SOOS_API_KEY --projectName="<YOUR_PROJECT_NAME>" --scanMode=$SCAN_MODE --apiURL=$API_URL $TARGET_URL
+  - docker run -it --rm soosio/dast --clientId=$SOOS_CLIENT_ID --apiKey=$SOOS_API_KEY --projectName="Let's get DASTY" --scanMode=$SCAN_MODE --apiURL=$API_URL $TARGET_URL
