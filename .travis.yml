@@ -1,44 +1,9 @@
-python:
-  - "3.8"
-
-# command to run SOOS tests
+os: linux
+services: docker
+env:
+  global:
+    - SCAN_MODE: baseline
+    - API_URL: https://qa-api.soos.io/api/
+    - TARGET_URL: https://brokencrystals.com
 script:
-  -  # ARGS:
-  -  # run soos.py with the -h flag for help
-
-  -  # ARGS REQUIRING CUSTOMIZATION:
-  - SOOS_PROJECT_NAME="peijin_loves_travis"
-
-  -  # ARGS WHERE CUSTOMIZATION IS OPTIONAL:
-  - SOOS_MODE="run_and_wait"
-  - SOOS_ON_FAILURE="fail_the_build"
-  - SOOS_DIRS_TO_EXCLUDE="soos"
-  - SOOS_FILES_TO_EXCLUDE=""
-  - SOOS_ANALYSIS_RESULT_MAX_WAIT=300
-  - SOOS_ANALYSIS_RESULT_POLLING_INTERVAL=10
-
-  -  # ARGS WHERE CUSTOMIZATION IS OPTIONAL, BUT UNLIKELY:
-  - SOOS_API_BASE_URL="https://qa-api.soos.io/api/"
-
-  -  # CI ENGINE SPECIFIC:
-  - eval SOOS_CHECKOUT_DIR="$TRAVIS_BUILD_DIR"
-
-  -  # BUILD/BRANCH SPECIFIC ARGS:
-  - SOOS_COMMIT_HASH="${TRAVIS_COMMIT}"
-  - SOOS_BRANCH_NAME="${TRAVIS_BRANCH}"
-  - SOOS_BRANCH_URI="${TRAVIS_BUILD_WEB_URL}" # ENTER BRANCH URI HERE IF KNOWN
-  - SOOS_BUILD_VERSION="build v1" # ENTER BUILD VERSION HERE IF KNOWN
-  - SOOS_BUILD_URI="" # ENTER BUILD URI HERE IF KNOWN
-  - SOOS_OPERATING_ENVIRONMENT="${TRAVIS_OS_NAME}" # ENTER OPERATING ENVIRONMENT HERE IF KNOWN (default will be provided)
-  - SOOS_INTEGRATION_NAME="TravisCI"
-
-  -  # **************************** Modify Above Only ***************#
-  - mkdir -p "${SOOS_CHECKOUT_DIR}/soos/workspace"
-  - cd "${SOOS_CHECKOUT_DIR}"
-  - python -m virtualenv .
-  - source bin/activate
-  - cd "${SOOS_CHECKOUT_DIR}/soos"
-  - curl -s https://api.github.com/repos/soos-io/soos-ci-analysis-python/releases/latest | grep "browser_download_url" | cut -d '"' -f 4 | xargs -n 1 curl -LO
-  - cd "${SOOS_CHECKOUT_DIR}"
-  - pip install -r "${SOOS_CHECKOUT_DIR}/soos/requirements.txt"
-  - python soos/soos.py -m="${SOOS_MODE}" -of="${SOOS_ON_FAILURE}" -dte="${SOOS_DIRS_TO_EXCLUDE}" -fte="${SOOS_FILES_TO_EXCLUDE}" -wd="${SOOS_CHECKOUT_DIR}" -armw=${SOOS_ANALYSIS_RESULT_MAX_WAIT} -arpi=${SOOS_ANALYSIS_RESULT_POLLING_INTERVAL} -buri="${SOOS_API_BASE_URL}" -scp="${SOOS_CHECKOUT_DIR}" -pn="${SOOS_PROJECT_NAME}" -ch="${SOOS_COMMIT_HASH}" -bn="${SOOS_BRANCH_NAME}" -bruri="${SOOS_BRANCH_URI}" -bldver="${SOOS_BUILD_VERSION}" -blduri="${SOOS_BUILD_URI}" -oe="${SOOS_OPERATING_ENVIRONMENT}" -intn="${SOOS_INTEGRATION_NAME}" $TEST_SUITE
+  - docker run -it --rm soosio/dast --clientId=$SOOS_CLIENT_ID --apiKey=$SOOS_API_KEY --projectName="<YOUR_PROJECT_NAME>" --scanMode=$SCAN_MODE --apiURL=$API_URL $TARGET_URL
