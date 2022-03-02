@@ -13,7 +13,8 @@ Script:
   
   - # ARGS REQUIRING CUSTOMIZATION:
   - SOOS_PROJECT_NAME="PEIJIN TESTING OUT TRAVIS in QA"
-  
+  - SOOS_LATEST_REPO="https://api.github.com/repos/soos-io/soos-ci-analysis-python/releases/latest"
+  - SOOS_TAGS="https://api.github.com/repos/soos-io/soos-ci-analysis-python/releases/tags/$tag"
   - # ARGS WHERE CUSTOMIZATION IS OPTIONAL:
   - SOOS_MODE="async_init"
   - SOOS_ON_FAILURE="fail_the_build"
